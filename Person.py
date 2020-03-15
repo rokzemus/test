@@ -12,5 +12,5 @@ class Person:
         self.gamesKnown = gamesKnown
 
 
-print("test")
+print("tests")
 
