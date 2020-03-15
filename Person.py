@@ -11,3 +11,6 @@ class Person:
         self.outTime = outTime
         self.gamesKnown = gamesKnown
 
+
+print("test")
+
