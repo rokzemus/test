@@ -5,12 +5,26 @@
 
 
 class Person:
-    def __init__(self, name, startTime, outTime, gamesKnown):
+    def __init__(self, name, startTime, endTime, shifts, gamesKnown, slots):
         self.name = name
         self.startTime = startTime
-        self.outTime = outTime
+        self.endTime = endTime
+        self.shifts = shifts
         self.gamesKnown = gamesKnown
+        self.slots = slots
+
+    def assign(self, slot):
+        assert slot in self.slots
+        self.shifts -= 1
+        self.slots.remove(slot)
+
+def Schedule(team, slots):
+    if slots == []:
+        return {}
+    for person in team:
+        if person.shifts > 0:
+            for slot in person.slots:
+                if slot in slots:
 
 
-print("tests")
 
