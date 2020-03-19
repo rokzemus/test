@@ -5,13 +5,13 @@
 
 
 class Person:
-    def __init__(self, name, startTime, endTime, shifts, gamesKnown, slots):
+    def __init__(self, name, startTime, endTime):
         self.name = name
         self.startTime = startTime
         self.endTime = endTime
-        self.shifts = shifts
-        self.gamesKnown = gamesKnown
-        self.slots = slots
+       # self.shifts = shifts
+        #   self.gamesKnown = gamesKnown
+        #self.slots = slots
 
     def assign(self, slot):
         assert slot in self.slots
