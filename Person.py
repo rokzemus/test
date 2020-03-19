@@ -5,12 +5,16 @@
 
 
 class Person:
-    def __init__(self, name, startTime, outTime, gamesKnown):
+    def __init__(self, name, startTime, endTime):
         self.name = name
         self.startTime = startTime
-        self.outTime = outTime
-        self.gamesKnown = gamesKnown
-
-
-print("tests")
-
+        self.endTime = endTime
+       # self.shifts = shifts
+        #   self.gamesKnown = gamesKnown
+        #self.slots = slots
+    def __str__(self):
+        return f"{self.name}{self.startTime}{self.endTime}"
+    def assign(self, slot):
+        assert slot in self.slots
+        self.shifts -= 1
+        self.slots.remove(slot)
