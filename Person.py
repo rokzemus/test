@@ -12,8 +12,12 @@ class Person:
        # self.shifts = shifts
         #   self.gamesKnown = gamesKnown
         #self.slots = slots
+
+
     def __str__(self):
         return f"{self.name}{self.startTime}{self.endTime}"
+
+
     def assign(self, slot):
         assert slot in self.slots
         self.shifts -= 1
