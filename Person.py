@@ -17,14 +17,3 @@ class Person:
         assert slot in self.slots
         self.shifts -= 1
         self.slots.remove(slot)
-
-def Schedule(team, slots):
-    if slots == []:
-        return {}
-    for person in team:
-        if person.shifts > 0:
-            for slot in person.slots:
-                if slot in slots:
-
-
-
