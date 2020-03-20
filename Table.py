@@ -1,5 +1,6 @@
 class Table():
-    def __init__(self, gameCode = '', gameNum = 0, isOpen = False, slotsNeeded = 1, slotsUsed = 0, dealerName = '', dealerOut = -1):
+    def __init__(self, gameCode = '', gameNum = 0, isOpen = False, slotsNeeded = 1, slotsUsed = 0, dealerName = '',
+                 dealerOut = -1):
         self.gameCode = gameCode
         self.gameNum = gameNum
         self.isOpen = isOpen
