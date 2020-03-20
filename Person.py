@@ -15,7 +15,7 @@ class Person:
 
 
     def __str__(self):
-        return f"{self.name}{self.startTime}{self.endTime}"
+        return f"{self.name} {self.startTime} {self.endTime}"
 
 
     def assign(self, slot):
