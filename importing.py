@@ -42,6 +42,7 @@ def assignDealer(table_List, employee_List):
         for x in range(len(employee_List)):
             if table_List[i].gameCode in employee_List[x].gamesKnown:
                 table_List[i].dealerName = employee_List[x].name
+                table_List[i].dealerOut = employee_List[x].endTime
                 employee_List[x] = Person.Person()
                 break
             else:
@@ -70,32 +71,33 @@ print('remaining employees')
 # nextEmployee = assignList
 # employee_List_two = employee_List.copy()
 
-def click():
-    for i in range(len(employee_List)):
+def click(table_List, employee_List):
+    for i in range(len(table_List)):
         for x in range(len(employee_List)):
-            if int(employee_List[i].startTime) == int(employee_List[x].endTime):
+            if int(employee_List[x].startTime) == int(table_List[i].dealerOut):
+            
                 # print(employee_List[x])
                 # print(employee_List[i])
                 assignDealer(table_List, employee_List)
-                employee_List[x] = employee_List[i]
-                employee_List[i] = Person.Person()
-            break
+                table_List[i].dealerName = employee_List[x]
+                #employee_List[x] = employee_List[i]
+            pass
 
         else:
             pass
 
 
-click()
+click(table_List,employee_List)
 print("")
 print("")
 for i in range(len(table_List)):
     print(table_List[i])
-click()
+click(table_List,employee_List)
 print("")
 print("")
 for i in range(len(table_List)):
     print(table_List[i])
-click()
+click(table_List,employee_List)
 print("")
 print("")
 for i in range(len(table_List)):

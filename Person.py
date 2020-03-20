@@ -5,14 +5,14 @@
 
 
 class Person:
-    def __init__(self, name="", startTime=0000, endTime=0000, gamesKnown=[]):
+    def __init__(self, name="", startTime=0000, endTime=0000, gamesKnown=[], alreadyDealing=False):
         self.name = name
         self.startTime = startTime
         self.endTime = endTime
         # self.shifts = shifts
         self.gamesKnown = gamesKnown
         # self.slots = slots
-
+        self.alreadyDealing = alreadyDealing
     def __str__(self):
         return f"{self.name} {self.startTime} {self.endTime}"
 

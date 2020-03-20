@@ -1,9 +1,9 @@
-First Craps,0100,0500, CR Jk RO
+First Craps,0100,0500, CR JK RO
 First Bj,0100,0500, BJ JK RO
 Second Bj,0100,0500, BJ CR MS
 Second Craps,0500,1300, RO CR JK
 Third Bj,0500,1300, BJ RO JK
 forth Bj, 0500,1300, BJ RO JK
-Last Craps,1300, 3000, CR JK RO
-Almost LastBJ,1300,3000, BJ JK RO
-Last Bj, 1300,3000, BJ JK RO
+Last Craps,1300, 0100, CR JK RO
+Almost LastBJ,1300,0100, BJ JK RO
+Last Bj, 1300,0100, BJ JK RO
