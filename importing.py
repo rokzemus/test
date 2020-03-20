@@ -61,10 +61,10 @@ for i in range(len(assignList)):
     print(assignList[i])
 
 
-outList = employee_List
-nextEmployee = assignList
+myOutList = employee_List
+myNextEmployee = assignList
 
-def click():
+def click(nextEmployee, outList):
     for i in range(len(nextEmployee)):
         for x in range(len(outList)):
             if int(nextEmployee[i].startTime) >= int(outList[x].endTime):
@@ -82,12 +82,12 @@ def click():
 for i in range(len(table_List)):
     print(table_List[i])
 
-click()
+click(myNextEmployee,myOutList)
 print("")
 print("")
 for i in range(len(table_List)):
     print(table_List[i])
-click()
+click(myNextEmployee,myOutList)
 print("")
 print("")
 for i in range(len(table_List)):
