@@ -9,23 +9,6 @@ with open('schedule.csv', 'r') as Schedule:
     reader = csv.reader(Schedule)
     for row in reader:
         employee_List.append(Person.Person(row[0],row[1],row[2],row[3]))
-for i in range(len(employee_List)):
-    print(employee_List[i])
-
-assignList = employee_List.copy()
-
-blackJackOne = Table.Table("BJ", True, 1, 1, employee_List)
-
-#for i in range(len(blackJackOne.dealerName)):
-#    print(blackJackOne.dealerName[i].name, blackJackOne.dealerName[i].endTime)
-
-
-
-def canDeal(parEmployeeList):
-    for i in range(len(parEmployeeList)):
-        if 'BJ' in parEmployeeList[i].gamesKnown:
-            return parEmployeeList[i].name
-
 
 table_List = []
 
@@ -34,61 +17,69 @@ with open('gameList.csv', 'r') as GameList:
     for row in reader:
         table_List.append(Table.Table(row[0], row[1]))
 
-for i in range(len(table_List)):
-    print(table_List[i])
 
 def assignDealer(parTableList, parEmployeeList):
     for i in range(len(parTableList)):
         for x in range(len(parEmployeeList)):
-            if parTableList[i].gameCode in parEmployeeList[x].gamesKnown:
-                parTableList[i].dealerName = parEmployeeList[x].name
-                parEmployeeList[x] = Person.Person()
-                break
-            else:
-                pass
-
-assignDealer(table_List.copy(), assignList.copy())
-
-for i in range(len(table_List)):
-    print(table_List[i])
-
-for i in range(len(employee_List)):
-    print(employee_List[i])
-
-print('remaining employees')
-
-for i in range(len(assignList)):
-    print(assignList[i])
+            if int(parEmployeeList[x].startTime) >= int(parTableList[i].dealerOut):
+                if parTableList[i].gameCode in parEmployeeList[x].gamesKnown:
+                    parTableList[i].dealerName = parEmployeeList[x].name
+                    parTableList[i].dealerOut = parEmployeeList[x].endTime
+                    parEmployeeList[x] = Person.Person()
+                    break
+                else:
+                    pass
+    return parEmployeeList, parTableList
 
 
-outList = employee_List
-nextEmployee = assignList
+myOutList = table_List
 
-def click():
+myNextEmployee = employee_List
+
+
+def click(outList, nextEmployee):
+
     for i in range(len(nextEmployee)):
         for x in range(len(outList)):
-            if int(nextEmployee[i].startTime) >= int(outList[x].endTime):
+            if int(nextEmployee[i].startTime) >= int(outList[x].dealerOut):
+                if (int(nextEmployee[i].startTime) - int(outList[x].dealerOut)) == 0:
+                    assignDealer(outList, nextEmployee)
+                    nextEmployee[i] = Person.Person()
 
-                assignDealer(table_List, outList)
-                outList[x] = Person.Person()
-                nextEmployee[i] = Person.Person()
-
-                pass
+                    pass
+                else:
+                    break
 
             else:
-                pass
+                break
+    return nextEmployee,outList
 
 
-for i in range(len(table_List)):
-    print(table_List[i])
+def displayTable():
+    print("")
+    print("")
+    for i in range(len(table_List)):
+        print(table_List[i])
+    print("")
+    print("")
 
-click()
-print("")
-print("")
-for i in range(len(table_List)):
-    print(table_List[i])
-click()
-print("")
-print("")
-for i in range(len(table_List)):
-    print(table_List[i])
+
+employee_List, table_List = assignDealer(table_List, employee_List)
+
+displayTable()
+
+employee_List, table_List = assignDealer(table_List, employee_List)
+
+displayTable()
+
+employee_List, table_List = assignDealer(table_List,employee_List)
+
+displayTable()
+
+# click(table_List, employee_List)
+#
+# displayTable()
+#
+# click(table_List, employee_List)
+#
+# displayTable()
