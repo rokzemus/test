@@ -42,12 +42,12 @@ def assignDealer(parTableList, parEmployeeList):
         for x in range(len(parEmployeeList)):
             if parTableList[i].gameCode in parEmployeeList[x].gamesKnown:
                 parTableList[i].dealerName = parEmployeeList[x].name
-                parEmployeeList.pop(x)
+                parEmployeeList[x] = Person.Person()
                 break
             else:
                 pass
 
-assignDealer(table_List, assignList)
+assignDealer(table_List.copy(), assignList.copy())
 
 for i in range(len(table_List)):
     print(table_List[i])
@@ -61,19 +61,34 @@ for i in range(len(assignList)):
     print(assignList[i])
 
 
-outList = employee_List.copy()
-nextEmployee = assignList.copy()
+outList = employee_List
+nextEmployee = assignList
 
-for i in range(len(nextEmployee)):
-    for x in range(len(outList)):
-        print(nextEmployee[i].startTime)
-        print(outList[x].endTime)
-        if int(nextEmployee[i].startTime) >= int(outList[x].endTime):
+def click():
+    for i in range(len(nextEmployee)):
+        for x in range(len(outList)):
+            if int(nextEmployee[i].startTime) >= int(outList[x].endTime):
 
-            assignDealer(table_List, assignList)
-            outList.pop(x)
+                assignDealer(table_List, outList)
+                outList[x] = Person.Person()
+                nextEmployee[i] = Person.Person()
 
-        break
+                pass
 
+            else:
+                pass
+
+
+for i in range(len(table_List)):
+    print(table_List[i])
+
+click()
+print("")
+print("")
+for i in range(len(table_List)):
+    print(table_List[i])
+click()
+print("")
+print("")
 for i in range(len(table_List)):
     print(table_List[i])
