@@ -12,7 +12,7 @@ with open('schedule.csv', 'r') as Schedule:
 for i in range(len(employee_List)):
     print(employee_List[i])
 
-assignList = employee_List
+assignList = employee_List.copy()
 
 blackJackOne = Table.Table("BJ", True, 1, 1, employee_List)
 
@@ -48,6 +48,32 @@ def assignDealer(parTableList, parEmployeeList):
                 pass
 
 assignDealer(table_List, assignList)
+
+for i in range(len(table_List)):
+    print(table_List[i])
+
+for i in range(len(employee_List)):
+    print(employee_List[i])
+
+print('remaining employees')
+
+for i in range(len(assignList)):
+    print(assignList[i])
+
+
+outList = employee_List.copy()
+nextEmployee = assignList.copy()
+
+for i in range(len(nextEmployee)):
+    for x in range(len(outList)):
+        print(nextEmployee[i].startTime)
+        print(outList[x].endTime)
+        if int(nextEmployee[i].startTime) >= int(outList[x].endTime):
+
+            assignDealer(table_List, assignList)
+            outList.pop(x)
+
+        break
 
 for i in range(len(table_List)):
     print(table_List[i])
