@@ -13,10 +13,7 @@ with open('schedule.csv', 'r') as Schedule:
 for i in range(len(employee_List)):
     print(employee_List[i])
 
-blackJackOne = Table.Table("BJ", True, 1, 1, employee_List[1].name)
+blackJackOne = Table.Table("BJ", True, 1, 1, employee_List)
 
-print(blackJackOne.dealerName)
-
-blackJackOne.dealerName = employee_List[0].name
-
-print(blackJackOne.dealerName)
+for i in range(len(blackJackOne.dealerName)):
+    print(blackJackOne.dealerName[i].name, blackJackOne.dealerName[i].endTime)
