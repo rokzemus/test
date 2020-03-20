@@ -5,7 +5,7 @@
 
 
 class Person:
-    def __init__(self, name, startTime, endTime, gamesKnown = []):
+    def __init__(self, name = "", startTime = -1, endTime = 0000, gamesKnown = []):
         self.name = name
         self.startTime = startTime
         self.endTime = endTime
