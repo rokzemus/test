@@ -17,16 +17,19 @@ with open('gameList.csv', 'r') as GameList:
     for row in reader:
         table_List.append(Table.Table(row[0], row[1]))
 
+
 def assignDealer(parTableList, parEmployeeList):
     for i in range(len(parTableList)):
         for x in range(len(parEmployeeList)):
-            if parTableList[i].gameCode in parEmployeeList[x].gamesKnown:
-                parTableList[i].dealerName = parEmployeeList[x].name
-                parTableList[i].dealerOut = parEmployeeList[x].endTime
-                parEmployeeList[x] = Person.Person()
-                break
-            else:
-                pass
+            if int(parEmployeeList[x].startTime) >= int(parTableList[i].dealerOut):
+                if parTableList[i].gameCode in parEmployeeList[x].gamesKnown:
+                    parTableList[i].dealerName = parEmployeeList[x].name
+                    parTableList[i].dealerOut = parEmployeeList[x].endTime
+                    parEmployeeList[x] = Person.Person()
+                    break
+                else:
+                    pass
+    return parEmployeeList, parTableList
 
 
 myOutList = table_List
@@ -34,21 +37,22 @@ myOutList = table_List
 myNextEmployee = employee_List
 
 
-def click(nextEmployee, outList):
+def click(outList, nextEmployee):
 
     for i in range(len(nextEmployee)):
         for x in range(len(outList)):
             if int(nextEmployee[i].startTime) >= int(outList[x].dealerOut):
-                if (int(nextEmployee[i].startTime) - int(outList[x].dealerOut)) >= 100:
+                if (int(nextEmployee[i].startTime) - int(outList[x].dealerOut)) == 0:
                     assignDealer(outList, nextEmployee)
                     nextEmployee[i] = Person.Person()
 
-                    break
+                    pass
                 else:
                     break
 
             else:
                 break
+    return nextEmployee,outList
 
 
 def displayTable():
@@ -60,22 +64,22 @@ def displayTable():
     print("")
 
 
-assignDealer(table_List, employee_List)
+employee_List, table_List = assignDealer(table_List, employee_List)
 
 displayTable()
 
-click(myNextEmployee,myOutList)
+employee_List, table_List = assignDealer(table_List, employee_List)
 
 displayTable()
 
-click(myNextEmployee,myOutList)
+employee_List, table_List = assignDealer(table_List,employee_List)
 
 displayTable()
 
-click(myNextEmployee,myOutList)
-
-displayTable()
-
-click(myNextEmployee,myOutList)
-
-displayTable()
+# click(table_List, employee_List)
+#
+# displayTable()
+#
+# click(table_List, employee_List)
+#
+# displayTable()
