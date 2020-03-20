@@ -4,13 +4,13 @@ import Table
 
 
 employee_List = []
+table_List = []
 
 with open('schedule.csv', 'r') as Schedule:
     reader = csv.reader(Schedule)
     for row in reader:
         employee_List.append(Person.Person(row[0],row[1],row[2],row[3]))
 
-table_List = []
 
 with open('gameList.csv', 'r') as GameList:
     reader = csv.reader(GameList)
@@ -32,32 +32,30 @@ def assignDealer(parTableList, parEmployeeList):
     return parEmployeeList, parTableList
 
 
-myOutList = table_List
-
-myNextEmployee = employee_List
-
-
-def click(outList, nextEmployee):
-
-    for i in range(len(nextEmployee)):
-        for x in range(len(outList)):
-            if int(nextEmployee[i].startTime) >= int(outList[x].dealerOut):
-                if (int(nextEmployee[i].startTime) - int(outList[x].dealerOut)) == 0:
-                    assignDealer(outList, nextEmployee)
-                    nextEmployee[i] = Person.Person()
-
-                    pass
-                else:
-                    break
-
-            else:
-                break
-    return nextEmployee,outList
+# myOutList = table_List
+#
+# myNextEmployee = employee_List
+#
+#
+# def click(outList, nextEmployee):
+#
+#     for i in range(len(nextEmployee)):
+#         for x in range(len(outList)):
+#             if int(nextEmployee[i].startTime) >= int(outList[x].dealerOut):
+#                 if (int(nextEmployee[i].startTime) - int(outList[x].dealerOut)) == 0:
+#                     assignDealer(outList, nextEmployee)
+#                     nextEmployee[i] = Person.Person()
+#
+#                     pass
+#                 else:
+#                     break
+#
+#             else:
+#                 break
+#     return nextEmployee,outList
 
 
 def displayTable():
-    print("")
-    print("")
     for i in range(len(table_List)):
         print(table_List[i])
     print("")
@@ -75,11 +73,3 @@ displayTable()
 employee_List, table_List = assignDealer(table_List,employee_List)
 
 displayTable()
-
-# click(table_List, employee_List)
-#
-# displayTable()
-#
-# click(table_List, employee_List)
-#
-# displayTable()
