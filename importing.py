@@ -12,7 +12,7 @@ with open('schedule.csv', 'r') as Schedule:
 for i in range(len(employee_List)):
     print(employee_List[i])
 
-assignList = employee_List
+assignList = employee_List.copy()
 
 blackJackOne = Table.Table("BJ", True, 1, 1, employee_List)
 
